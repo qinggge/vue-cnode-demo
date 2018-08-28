@@ -10,9 +10,14 @@
                 <span class="topic-tab">招聘</span>
             </div>
             <div class="cell" v-for="post in posts" :key="post.id">
-                <a href="" class="user_avatar pull-left">
-                    <img :src="post.author.avatar_url" :alt="post.author.loginname">
-                </a>
+                <router-link  class="user_avatar pull-left" :to="{
+                        name: 'user_info',
+                        params:{
+                            name: post.author.loginname
+                        }
+                    }">
+                        <img :src="post.author.avatar_url" :alt="post.author.loginname">
+                    </router-link>
                 <span class="reply_count pull-left">
                     <span class="count_of_replies" title="回复数">
                         {{post.reply_count}}
