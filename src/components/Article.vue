@@ -73,7 +73,6 @@ export default {
                 .then(response=>{
                     this.isLoading = false
                     this.post = response.data.data
-                    console.log(this.post)
                 })
                 .catch(error=>{
                 })
@@ -227,5 +226,9 @@ a.dark, a.dark:active, a.dark:link, a.dark:visited {
 }
 .reply2_area {
     margin-left: 42px;
+}
+#content {
+    padding: 0;
+    margin-right: 305px;
 }
 </style>

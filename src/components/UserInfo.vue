@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel">
+        <div class="panel" v-if="info.recent_topics != undefined">
             <div class="header">
                 <span class="col_fade">最近参与的话题</span>
             </div>

@@ -68,6 +68,11 @@ Vue.filter('formatDate', function (str) {
   }
 })  
 
+Vue.filter('omit',function(str){
+  if(str.length > 20){
+    return (str.slice(0,22) + '...')
+  }
+})
 new Vue({
   el: '#app',
   router,

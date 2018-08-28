@@ -1,6 +1,8 @@
 <template>
     <div class="header">
-        <img src="../assets/logo.svg" alt="">
+        <a href="/">
+            <img src="../assets/logo.svg" alt="">
+        </a>
         <ul>
             <li><a href="#">首页</a></li>
             <li><a href="#">新手入门</a></li>
