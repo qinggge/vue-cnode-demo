@@ -1,11 +1,13 @@
 <template>
     <div class="header">
-        <a href="/">
-            <img src="../assets/logo.svg" alt="">
-        </a>
-        <ul>
-            <li><a href="github.com/qinggge">qinggge</a></li>
-        </ul>
+        <div class="header_wrapper">
+            <a href="/">
+                <img src="../assets/logo.svg" alt="CNode">
+            </a>
+            <ul>
+                <li><a href="github.com/qinggge">qinggge</a></li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -26,9 +28,12 @@ a{
     background-color: #444;
     height: 50px;
 }
+.header_wrapper{
+    width: 90%;
+    margin: 0 auto;
+}
 img{
     max-width: 120px;
-    margin-left: 50px;
     margin-top: 10px;
 }
 ul{

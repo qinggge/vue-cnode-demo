@@ -5,6 +5,7 @@
         <router-view name="sidebar"></router-view>
         <router-view name="main"></router-view>
       </div>
+      <Footer></Footer>
   </div>
 </template>
 
@@ -12,10 +13,11 @@
 import Header from './components/Header'
 import PostList from './components/PostList'
 import UserInfo from './components/UserInfo'
+import Footer from './components/Footer'
 export default {
   name: 'App',
   components:{
-    Header,PostList,UserInfo
+    Header,PostList,UserInfo,Footer
   }
 }
 </script>
