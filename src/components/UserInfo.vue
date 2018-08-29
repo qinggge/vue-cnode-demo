@@ -4,7 +4,7 @@
         <div class="panel">
             <div class="header">
                 <ul class="breadcrumb">
-                    <li><a href="/">主页</a><span class="divider">/</span></li>
+                    <li><a href="/dist/index.html#/">主页</a><span class="divider">/</span></li>
                 </ul>
             </div>
             <div class="inner userinfo">
