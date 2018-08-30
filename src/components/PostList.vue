@@ -116,6 +116,7 @@ export default {
         },
         changeTopic(index){
             this.current = index
+            this.postPage = 1
             switch(this.current){
                 case 0:
                     this.getData()

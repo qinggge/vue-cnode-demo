@@ -47,7 +47,6 @@ export default {
             this.topic = document.querySelectorAll('.topic-tab')
             for(let i = 0;i<this.topic.length; i++){
                 if(this.topic[i].classList.item(1)){
-                    console.dir(this.topic[i])
                     this.articleTopic = this.topic[i].innerText
                 }
             }
