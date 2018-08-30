@@ -19,7 +19,9 @@ export default {
             pageBtn: [1,2,3,4,5,'......'],
             currentPage: 1,
             true: false,
-            judge: false
+            judge: false,
+            articleTopic: '',
+            topic: []
         }
     },
     methods:{
@@ -42,6 +44,10 @@ export default {
                 return 
             }
             this.currentPage = page
+            this.topic = document.querySelectorAll('.topic-tab')
+            for(let i = 0;i<this.topic.length; i++){
+                console.dir(this.topic[i].className)
+            }
             if(page>4){
                 this.judge = true
             }else{
@@ -54,7 +60,7 @@ export default {
                 this.pageBtn.unshift(this.pageBtn[0]-1)
                 this.pageBtn.splice(5,1)
             }
-            this.$emit("handleList",this.currentPage)
+            this.$emit("handleList",[this.currentPage,this.articleTopic])
         }
     }
 }
@@ -62,7 +68,8 @@ export default {
 
 <style scoped>
 .currentPage{
-    background: black;
+    background: #80BD01;
+    outline: #80BD01;
     color: white;
 }
 button{

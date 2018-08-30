@@ -2,12 +2,8 @@
     <div>
         <div v-bind:class="isLoading"></div>
         <div id="topic_list">
-            <div class="topbar">
-                <span class="topic-tab">全部</span>
-                <span class="topic-tab">精华</span>
-                <span class="topic-tab">分享</span>
-                <span class="topic-tab">问答</span>
-                <span class="topic-tab">招聘</span>
+            <div class="topbar" v-if="spans !== undefined">
+                <span v-for="(span,index) in spans" :key="span.text" :class="['topic-tab',{active:index === current}]"  @click="changeTopic(index)">{{span.text}}</span>
             </div>
             <div class="cell" v-for="post in posts" :key="post.id">
                 <router-link  class="user_avatar pull-left" :to="{
@@ -61,32 +57,69 @@ export default {
         return {
             isLoading: false,
             posts: [],
-            postPage: 1
+            postPage: 1,
+            tab: {
+            },
+            spans: [
+                {text: '全部'},
+                {text: '精华'},
+                {text: '分享'},
+                {text: '问答'},
+                {text: '招聘'}
+            ],
+            current: 0
         }
     },
     components:{
         Pagination
     },
     methods: {
-        getData(){
+        getData(topic){
+            var topicValue
+            if(!topic){
+                topicValue = ''
+            }
+            topicValue = topic
             this.$http.get('https://cnodejs.org/api/v1/topics',{
                 params:{
                     page: this.postPage,
-                    limit: 20
+                    limit: 20,
+                    tab: topicValue,
                 }
             }).then(response=>{
                 this.isLoading = false
-                console.log(response)
                 this.posts = response.data.data
             }).catch(error=>{
                 console.log(error)
             })
         },
         renderList(value){
+            console.log(value)
             this.postPage = value
             this.getData()
+        },
+        changeTopic(index){
+            this.current = index
+            console.log(this.current)
+            switch(this.current){
+                case 0:
+                    this.getData()
+                    break
+                case 1:
+                    this.getData('good')
+                    console.log('我是1')
+                    break
+                case 2:
+                    this.getData('share')
+                    break
+                case 3:
+                    this.getData('ask')
+                    break
+                case 4:
+                    this.getData('job')
+                    break
+            }
         }
-
     },
     beforeMount: function(){
         this.isLoading = true
@@ -226,5 +259,12 @@ a.topic_title {
 .topic-tab {
     margin: 0 10px;
     color: #80bd01;
+    cursor: pointer;
+}
+.topic-tab.active{
+    background-color: #80bd01;
+    color: #fff;
+    padding: 3px 4px;
+    border-radius: 3px;
 }
 </style>

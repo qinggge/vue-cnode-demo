@@ -73,6 +73,7 @@ export default {
                 .then(response=>{
                     this.isLoading = false
                     this.post = response.data.data
+                    console.log(post)
                 })
                 .catch(error=>{
                 })
