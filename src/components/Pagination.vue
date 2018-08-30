@@ -46,7 +46,10 @@ export default {
             this.currentPage = page
             this.topic = document.querySelectorAll('.topic-tab')
             for(let i = 0;i<this.topic.length; i++){
-                console.dir(this.topic[i].className)
+                if(this.topic[i].classList.item(1)){
+                    console.dir(this.topic[i])
+                    this.articleTopic = this.topic[i].innerText
+                }
             }
             if(page>4){
                 this.judge = true

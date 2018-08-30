@@ -67,7 +67,8 @@ export default {
                 {text: '问答'},
                 {text: '招聘'}
             ],
-            current: 0
+            current: 0,
+            value: ''
         }
     },
     components:{
@@ -94,20 +95,33 @@ export default {
             })
         },
         renderList(value){
-            console.log(value)
-            this.postPage = value
-            this.getData()
+            this.postPage = value[0]
+            switch(value[1]){
+                case '全部':
+                    this.getData()
+                    break
+                case '精华':
+                    this.getData('good')
+                    break
+                case '分享':
+                    this.getData('share')
+                    break
+                case '问答':
+                    this.getData('ask')
+                    break
+                case '招聘':
+                    this.getData('job')
+                    break
+            }
         },
         changeTopic(index){
             this.current = index
-            console.log(this.current)
             switch(this.current){
                 case 0:
                     this.getData()
                     break
                 case 1:
                     this.getData('good')
-                    console.log('我是1')
                     break
                 case 2:
                     this.getData('share')
