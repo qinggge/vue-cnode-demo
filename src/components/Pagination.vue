@@ -3,7 +3,7 @@
         <button @click="changeBtn">首页</button>
         <button @click="changeBtn">上一页</button>
         <button v-if="judge">......</button>
-        <button v-for="btn in pageBtn" :key="btn" :class="[{currentPage: btn == currentPage},'pageBtn']" @click="changeBtn(btn)">
+        <button v-for="btn in pageBtn" :key="btn" :class="[{currentPage: btn === currentPage},'pageBtn']" @click="changeBtn(btn)">
             {{btn}}
         </button>
         <button @click="changeBtn">下一页</button>
@@ -62,7 +62,7 @@ export default {
                 this.pageBtn.unshift(this.pageBtn[0]-1)
                 this.pageBtn.splice(5,1)
             }
-            this.$emit("handleList",[this.currentPage,this.articleTopic])
+            this.$emit("handleList",[this.currentPage,this.articleTopic,this.changeBtn])
         }
     }
 }

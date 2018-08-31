@@ -1,51 +1,55 @@
 <template>
     <div>
-        <div v-bind:class="isLoading"></div>
         <div id="topic_list">
             <div class="topbar" v-if="spans !== undefined">
                 <span v-for="(span,index) in spans" :key="span.text" :class="['topic-tab',{active:index === current}]"  @click="changeTopic(index)">{{span.text}}</span>
             </div>
-            <div class="cell" v-for="post in posts" :key="post.id">
-                <router-link  class="user_avatar pull-left" :to="{
-                        name: 'user_info',
-                        params:{
-                            name: post.author.loginname
-                        }
-                    }">
-                        <img :src="post.author.avatar_url" :alt="post.author.loginname">
-                    </router-link>
-                <span class="reply_count pull-left">
-                    <span class="count_of_replies" title="回复数">
-                        {{post.reply_count}}
-                    </span>
-                    <span class="count_seperator">/</span>
-                    <span class="count_of_visits" title="点击数">
-                        {{post.visit_count}}
-                    </span>
-                </span>
-                <a class="last_time pull-right" href="">
-                    <span class="last_active_time">{{post.last_reply_at | formatDate }}</span>
-                </a>
-                <div class="topic_title_wrapper">
-                    <span :class="[{
-                        put_good:post.good,
-                        put_top:post.top,
-                        'topiclist-tab':(!post.good && !post.top)
-                        }]">
-                        {{post | tabFormatter}}
-                    </span>
-                    <router-link  class="topic_title" :to="{
-                        name:'post_content',
-                        params: {
-                                id:post.id,
-                                name:post.author.loginname
+            <div class="site-welcome active" v-if="isLoading" >
+                <div class="loading"></div>
+            </div>
+            <div class="cell_wrapper" v-else>
+                <div class="cell" v-for="post in posts" :key="post.id">
+                    <router-link  class="user_avatar pull-left" :to="{
+                            name: 'user_info',
+                            params:{
+                                name: post.author.loginname
                             }
-                        }">{{post.title}}
-                    </router-link>
+                        }">
+                            <img :src="post.author.avatar_url" :alt="post.author.loginname">
+                        </router-link>
+                    <span class="reply_count pull-left">
+                        <span class="count_of_replies" title="回复数">
+                            {{post.reply_count}}
+                        </span>
+                        <span class="count_seperator">/</span>
+                        <span class="count_of_visits" title="点击数">
+                            {{post.visit_count}}
+                        </span>
+                    </span>
+                    <a class="last_time pull-right" href="">
+                        <span class="last_active_time">{{post.last_reply_at | formatDate }}</span>
+                    </a>
+                    <div class="topic_title_wrapper">
+                        <span :class="[{
+                            put_good:post.good,
+                            put_top:post.top,
+                            'topiclist-tab':(!post.good && !post.top)
+                            }]">
+                            {{post | tabFormatter}}
+                        </span>
+                        <router-link  class="topic_title" :to="{
+                            name:'post_content',
+                            params: {
+                                    id:post.id,
+                                    name:post.author.loginname
+                                }
+                            }">{{post.title}}
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
-        <Pagination @handleList="renderList"></Pagination>
+        <Pagination @handleList="renderList" :currentPage="this.postPage"></Pagination>
     </div>
 </template>
 
@@ -55,7 +59,7 @@ export default {
     name: 'PostList',
     data(){
         return {
-            isLoading: false,
+            isLoading: true,
             posts: [],
             postPage: 1,
             tab: {
@@ -68,7 +72,6 @@ export default {
                 {text: '招聘'}
             ],
             current: 0,
-            value: ''
         }
     },
     components:{
@@ -117,6 +120,7 @@ export default {
         changeTopic(index){
             this.current = index
             this.postPage = 1
+            this.isLoading = true
             switch(this.current){
                 case 0:
                     this.getData()
@@ -134,7 +138,7 @@ export default {
                     this.getData('job')
                     break
             }
-        }
+        },
     },
     beforeMount: function(){
         this.isLoading = true
@@ -182,16 +186,49 @@ a:focus, a:hover {
   .loading::after{
     animation-delay: 1s;
   }
-  #topic_list {
-    margin: 0;
+  
+.icon {
+    width: 1em; 
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
+.site-welcome{
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
 }
-  .cell {
-    position: relative;
-    padding: 10px 0 10px 10px;
-    font-size: 14px;
-    padding-right: 10px;
-    background: #fff;
-    border-top: 1px solid #f0f0f0;
+.site-welcome.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+@keyframes s{
+    0%{
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+    }
+    100%{
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+}
+#topic_list {
+margin: 0;
+}
+.cell {
+position: relative;
+padding: 10px 0 10px 10px;
+font-size: 14px;
+padding-right: 10px;
+background: #fff;
+border-top: 1px solid #f0f0f0;
 }
   .user_avatar img, .user_big_avatar img {
     width: 30px;
