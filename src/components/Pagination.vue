@@ -6,6 +6,7 @@
         <button v-for="btn in pageBtn" :key="btn" :class="[{currentPage: btn === currentPage},'pageBtn']" @click="changeBtn(btn)">
             {{btn}}
         </button>
+        <button>......</button>
         <button @click="changeBtn">下一页</button>
     </div>
 </template>
@@ -16,7 +17,7 @@ export default {
     name: 'Pagination',
     data(){
         return {
-            pageBtn: [1,2,3,4,5,'......'],
+            pageBtn: [1,2,3,4,5],
             currentPage: 1,
             true: false,
             judge: false,
@@ -27,6 +28,7 @@ export default {
     methods:{
         changeBtn(page){
             if(typeof page !== 'number'){
+                console.log(page)
                 switch(page.target.innerText){
                     case '上一页':
                         $('button.currentPage').prev().click()
@@ -35,7 +37,7 @@ export default {
                         $('button.currentPage').next().click()
                         break
                     case '首页':
-                        this.pageBtn = [1,2,3,4,5,'......']
+                        this.pageBtn = [1,2,3,4,5]
                         this.changeBtn(1)
                         break
                     default: 
@@ -63,6 +65,13 @@ export default {
                 this.pageBtn.splice(5,1)
             }
             this.$emit("handleList",[this.currentPage,this.articleTopic,this.changeBtn])
+        },
+        changePage(){
+            if(this.pageBtn !== [1,2,3,4,5]){
+                this.pageBtn = [1,2,3,4,5]
+                this.judge = false
+                this.currentPage = 1
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
             </div>
             <div class="inner">
                 <div class="user_card">
-                    <router-link  :to="{
+                    <router-link :to="{
                         name: 'user_info',
                         params:{
                             name: info.loginname

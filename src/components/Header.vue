@@ -1,11 +1,11 @@
 <template>
     <div class="header">
         <div class="header_wrapper">
-            <a href="/">
+            <router-link :to="{name: 'root'}">
                 <img src="../assets/logo.svg" alt="CNode">
-            </a>
+            </router-link>
             <ul>
-                <li><a href="github.com/qinggge">qinggge</a></li>
+                <li><a href="http://github.com/qinggge" target="_blank">qinggge</a></li>
             </ul>
         </div>
     </div>

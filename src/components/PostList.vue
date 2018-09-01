@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <Pagination @handleList="renderList" :currentPage="this.postPage"></Pagination>
+        <Pagination @handleList="renderList" :currentPage="this.postPage" ref="changePage"></Pagination>
     </div>
 </template>
 
@@ -98,6 +98,7 @@ export default {
             })
         },
         renderList(value){
+            this.isLoading = true
             this.postPage = value[0]
             switch(value[1]){
                 case '全部':
@@ -121,6 +122,7 @@ export default {
             this.current = index
             this.postPage = 1
             this.isLoading = true
+            this.$refs.changePage.changePage()
             switch(this.current){
                 case 0:
                     this.getData()
@@ -220,15 +222,15 @@ a:focus, a:hover {
     }
 }
 #topic_list {
-margin: 0;
+    margin: 0;
 }
 .cell {
-position: relative;
-padding: 10px 0 10px 10px;
-font-size: 14px;
-padding-right: 10px;
-background: #fff;
-border-top: 1px solid #f0f0f0;
+    position: relative;
+    padding: 10px 0 10px 10px;
+    font-size: 14px;
+    padding-right: 10px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
 }
   .user_avatar img, .user_big_avatar img {
     width: 30px;
@@ -282,6 +284,8 @@ a.topic_title {
     vertical-align: middle;
     font-size: 16px;
     line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .put_good, .put_top {
     background: #80bd01;
