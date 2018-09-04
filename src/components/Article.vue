@@ -36,8 +36,6 @@
                     }">
                         <img :src="reply.author.avatar_url" :title="reply.author.loginname">
                     </router-link>
-                    <a :href="`/user/${reply.author.loginname}`" class="user_avatar">
-                    </a>
                     <div class="user_info">
                         <router-link class="dark reply_author" :to="{
                             name: 'user_info',
@@ -81,7 +79,6 @@ export default {
                 .then(response=>{
                     this.isLoading = false
                     this.post = response.data.data
-                    console.log(post)
                 })
                 .catch(error=>{
                 })
@@ -95,7 +92,6 @@ export default {
 </script>
 
 <style scoped>
-  @import url('../assets/markdown-github.css');
 .changes span:before {
     content: "•";
     margin-right: 3px;
@@ -245,41 +241,9 @@ a.dark, a.dark:active, a.dark:link, a.dark:visited {
         margin-right: 0;
     }
 }
-.site-welcome{
-    display: none;
-    height: 100%;
-    width: 100%;
-    z-index: 1;
-
+.preview p, .reply_content p, .reply_form p, .topic_content p {
+    font-size: 15px;
+    line-height: 1.7em;
+    overflow: auto;
 }
-.site-welcome.active{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.loading{
-    width: 200px;
-    height: 200px;
-    position: relative;
-}
-.loading::before,.loading::after{
-    content: '';
-    position: absolute;
-    width: 0px;
-    height: 0px;
-    background: black;
-    border-radius: 50%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    animation: s 2s linear infinite;
-}
-.loading::after{
-    animation-delay: 1s;
-}
-  
 </style>

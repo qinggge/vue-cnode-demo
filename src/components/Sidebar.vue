@@ -15,7 +15,12 @@
                         <img :src="info.avatar_url" :title="info.loginname">
                     </router-link>
                     <span class="user_name">
-                        <router-link class="dark" to="">
+                        <router-link class="dark" :to="{
+                            name: 'user_info',
+                            params:{
+                                name: info.loginname
+                            }
+                        }">
                             {{info.loginname}}
                         </router-link>
                     </span>
@@ -36,7 +41,13 @@
                 <ul class="unstyled" v-if="info.recent_topics != undefined">
                     <li v-for="list in info.recent_topics.slice(0,5)" :key="list.id">
                         <div>
-                            <router-link class="dark topic_title" :title="list.title" to="">
+                            <router-link class="dark topic_title" :title="list.title" :to="{
+                                name: 'post_content',
+                                params:{
+                                    id: list.id,
+                                    name: list.author.loginname
+                                }
+                            }">
                                 {{list.title | omit}}
                             </router-link>
                         </div>
@@ -52,7 +63,13 @@
                 <ul class="unstyled" v-if="info.recent_replies != undefined">
                     <li v-for="list in info.recent_replies.slice(0,5)" :key="list.id">
                         <div>
-                            <router-link class="dark topic_title" :title="list.title" to="">
+                            <router-link class="dark topic_title" :title="list.title" :to="{
+                                name: 'post_content',
+                                params:{
+                                    id: list.id,
+                                    name: list.author.loginname
+                                }
+                            }">
                                 {{list.title | omit}}
                             </router-link>
                         </div>

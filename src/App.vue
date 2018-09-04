@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style>
+@import url('./assets/markdown-github.css');
 #main {
   width: 90%;
   max-width: 1400px;
@@ -42,5 +43,42 @@ body {
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
+}
+
+.site-welcome{
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+}
+.site-welcome.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.site-welcome .loading{
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+ .site-welcome .loading::before,.site-welcome .loading::after{
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    background: black;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: s 2s linear infinite;
+}
+.site-welcome .loading::after{
+    animation-delay: 1s;
 }
 </style>

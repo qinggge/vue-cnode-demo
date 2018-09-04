@@ -4,7 +4,7 @@
             <div class="topbar" v-if="spans !== undefined">
                 <span v-for="(span,index) in spans" :key="span.text" :class="['topic-tab',{active:index === current}]"  @click="changeTopic(index)">{{span.text}}</span>
             </div>
-            <div class="site-welcome active" v-show="isLoading" >
+            <div class="site-welcome active" v-if="isLoading" >
                 <div class="loading"></div>
             </div>
             <div class="cell_wrapper">
