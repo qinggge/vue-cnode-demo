@@ -41,7 +41,7 @@
                 <ul class="unstyled" v-if="info.recent_topics != undefined">
                     <li v-for="list in info.recent_topics.slice(0,5)" :key="list.id">
                         <div>
-                            <router-link class="dark topic_title" :title="list.title" :to="{
+                            <router-link class="dark topic_title" :title="list.title" target="_blank" :to="{
                                 name: 'post_content',
                                 params:{
                                     id: list.id,
@@ -63,7 +63,7 @@
                 <ul class="unstyled" v-if="info.recent_replies != undefined">
                     <li v-for="list in info.recent_replies.slice(0,5)" :key="list.id">
                         <div>
-                            <router-link class="dark topic_title" :title="list.title" :to="{
+                            <router-link class="dark topic_title" :title="list.title" target="_blank" :to="{
                                 name: 'post_content',
                                 params:{
                                     id: list.id,
