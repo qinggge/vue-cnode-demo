@@ -129,6 +129,11 @@ export default {
 .panel .inner a {
     color: #778087;
 }
+.panel .header {
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
+}
 .user_card .user_avatar img {
     width: 48px;
     height: 48px;
@@ -162,5 +167,10 @@ export default {
 .unstyled, .unstyled li{
     list-style: none;
     margin-left: 5px;
+}
+@media (max-width: 979px) {
+    #sidebar{
+        display: none;
+    }
 }
 </style>

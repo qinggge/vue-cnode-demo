@@ -26,7 +26,6 @@ export default {
 #main {
   width: 90%;
   max-width: 1400px;
-  min-width: 960px;
   margin: 15px auto;
   min-height: 400px;
 }

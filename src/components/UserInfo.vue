@@ -4,7 +4,12 @@
         <div class="panel">
             <div class="header">
                 <ul class="breadcrumb">
-                    <li><a href="/dist/index.html#/">主页</a><span class="divider">/</span></li>
+                    <li>
+                        <router-link :to="{
+                                name: 'root'
+                            }">主页</router-link>
+                        <span class="divider">/</span>
+                    </li>
                 </ul>
             </div>
             <div class="inner userinfo">
@@ -25,11 +30,16 @@
                 <span class="col_fade">最近创建的话题</span>
             </div>
             <div class="cell" v-for="topic in info.recent_topics.slice(0,4)" :key="topic.id">
-                <a :href="`/user/${info.loginname}`" class="user_avatar pull-left">
+                <router-link :to="{
+                    name:'user_info',
+                    params:{
+                        name: info.loginname
+                    }
+                }" class="user_avatar pull-left">
                     <img :src="info.avatar_url" :title="info.loginname">
-                </a>
+                </router-link>
                 <a :href="info" class="last_time pull-right">
-                    <span>最后回复于 {{topic.last_reply_at | formatDate}}</span>
+                    <span>{{topic.last_reply_at | formatDate}}</span>
                 </a>
                 <div class="topic_title_wrapper">
                     <router-link  :to="{
@@ -48,11 +58,16 @@
                 <span class="col_fade">最近参与的话题</span>
             </div>
             <div class="cell" v-for="topic in info.recent_replies.slice(0,5)" :key="topic.id">
-                <a :href="`/user/${topic.author.loginname}`" class="user_avatar pull-left">
+                <router-link :to="{
+                        name: 'user_info',
+                        params: {
+                            name: topic.author.loginname
+                        }
+                    }"  class="user_avatar pull-left">
                     <img :src="topic.author.avatar_url" :title="info.loginname">
-                </a>
+                </router-link>
                 <a :href="info" class="last_time pull-right">
-                    <span>最后回复于 {{topic.last_reply_at | formatDate}}</span>
+                    <span>{{topic.last_reply_at | formatDate}}</span>
                 </a>
                 <div class="topic_title_wrapper">
                     <router-link :to="{
@@ -107,7 +122,6 @@ ul,li{
 }
 #content {
     padding: 0;
-    margin-right: 305px;
 }
 .panel {
     margin-bottom: 13px;
@@ -232,5 +246,13 @@ a.topic_title {
     color: #08c;
     text-decoration: none;
     margin-left: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media (max-width: 979px){
+    a.topic_title{
+        font-size: 14px;
+        margin-left: 15px;
+    }
 }
 </style>

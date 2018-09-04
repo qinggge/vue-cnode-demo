@@ -1,5 +1,8 @@
 <template>
     <div class="article" id="content">
+        <div class="site-welcome active" v-if="isLoading" >
+            <div class="loading"></div>
+        </div>
         <div class="header topic_header" v-if="post.author != undefined">
             <span class="topic_full_title">
                 <span :class="[{
@@ -36,7 +39,12 @@
                     <a :href="`/user/${reply.author.loginname}`" class="user_avatar">
                     </a>
                     <div class="user_info">
-                        <a class="dark reply_author" :href="`/user/${reply.author.loginname}`">{{reply.author.loginname}}</a>
+                        <router-link class="dark reply_author" :to="{
+                            name: 'user_info',
+                            params:{
+                                name: reply.author.loginname
+                            }
+                        }">{{reply.author.loginname}}</router-link>
                         <a class="reply_time">{{index+1}}楼•{{reply.create_at | formatDate}}</a>
                     </div>
                     <div class="user_action">
@@ -86,7 +94,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
   @import url('../assets/markdown-github.css');
 .changes span:before {
     content: "•";
@@ -232,4 +240,46 @@ a.dark, a.dark:active, a.dark:link, a.dark:visited {
     padding: 0;
     margin-right: 305px;
 }
+@media (max-width: 979px){
+    #content{
+        margin-right: 0;
+    }
+}
+.site-welcome{
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+}
+.site-welcome.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.loading{
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+.loading::before,.loading::after{
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    background: black;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: s 2s linear infinite;
+}
+.loading::after{
+    animation-delay: 1s;
+}
+  
 </style>

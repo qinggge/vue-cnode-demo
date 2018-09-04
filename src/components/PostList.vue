@@ -4,10 +4,10 @@
             <div class="topbar" v-if="spans !== undefined">
                 <span v-for="(span,index) in spans" :key="span.text" :class="['topic-tab',{active:index === current}]"  @click="changeTopic(index)">{{span.text}}</span>
             </div>
-            <div class="site-welcome active" v-if="isLoading" >
+            <div class="site-welcome active" v-show="isLoading" >
                 <div class="loading"></div>
             </div>
-            <div class="cell_wrapper" v-else>
+            <div class="cell_wrapper">
                 <div class="cell" v-for="post in posts" :key="post.id">
                     <router-link  class="user_avatar pull-left" :to="{
                             name: 'user_info',
@@ -16,7 +16,7 @@
                             }
                         }">
                             <img :src="post.author.avatar_url" :alt="post.author.loginname">
-                        </router-link>
+                    </router-link>
                     <span class="reply_count pull-left">
                         <span class="count_of_replies" title="回复数">
                             {{post.reply_count}}
@@ -289,7 +289,8 @@ a.topic_title {
 }
 .put_good, .put_top {
     background: #80bd01;
-    padding: 2px 4px;
+    padding: 2px 2px 2px 4px;
+    margin-right: 5px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -300,7 +301,8 @@ a.topic_title {
 .topiclist-tab {
     background-color: #e5e5e5;
     color: #999;
-    padding: 2px 4px;
+    padding: 2px 2px 2px 4px;
+    margin-right: 5px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -323,4 +325,23 @@ a.topic_title {
     padding: 3px 4px;
     border-radius: 3px;
 }
+ @media (max-width: 979px){
+    #main .reply_count{
+        position: absolute;
+        font-size: 12px;
+        bottom: 0px;
+        text-align: left;
+        left: 86px;
+    }
+    #main .topic_title_wrapper{
+        margin-left: 35px;
+    }
+    .topbar{
+        display:flex;
+        justify-content: space-between;
+    }
+    a.topic_title{
+        font-size: 14px;
+    }
+ }
 </style>
