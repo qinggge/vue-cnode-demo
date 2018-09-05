@@ -7,7 +7,7 @@
             <div class="site-welcome active" v-if="isLoading" >
                 <div class="loading"></div>
             </div>
-            <div class="cell_wrapper">
+            <div class="cell_wrapper" v-else>
                 <div class="cell" v-for="post in posts" :key="post.id">
                     <router-link  class="user_avatar pull-left" :to="{
                             name: 'user_info',
