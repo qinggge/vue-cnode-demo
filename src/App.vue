@@ -28,7 +28,7 @@ export default {
   width: 90%;
   max-width: 1400px;
   margin: 15px auto;
-  min-height: 400px;
+  min-height: 545px;
 }
 body {
   background-color: #e1e1e1;
