@@ -1,22 +1,22 @@
-# cnode
+# Vue.js 仿 CNode 技术社区
 
-> Vue CNode
+## 介绍
+通过 [CNode开源技术社区](https://cnodejs.org/) 提供的API，实现的一个仿 CNode 社区的 Vue.js 作品
 
-## Build Setup
+## 预览
+- [Vue.js仿CNode技术社区](https://zhuhuang.me/vue-cnode-demo/dist/#/)
+- [官方API地址](https://cnodejs.org/api)
 
-``` bash
-# install dependencies
-npm install
+# 实现功能
+- 文章列表
+- 文章分类
+- 文章详情
+- 用户详情
+- 适配移动端
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-# Vue.js仿CNode社区
+## 技术栈
+- Vue.js
+- Vue Router
+- Axios
+- HTML5
+- CSS3
